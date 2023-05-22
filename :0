@@ -1,0 +1,32 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+)
+
+func main() {
+	var num int
+	random := rand.Intn(100) + 1
+	var tentativa int
+	var rep string
+
+	for num != random {
+		fmt.Println("Insira um número: ")
+		fmt.Scan(&num)
+		if num > random {
+			fmt.Println("O número é menor")
+		} else if num < random {
+			fmt.Println("O número é maior")
+		} else {
+			fmt.Println("Parabéns, você alcançou o número :) gostaria de tentar novamente? ")
+			fmt.Scan(&rep)
+			if rep = "s" {
+				continue
+			}
+		}
+		tentativa++
+
+	}
+	fmt.Println(tentativa)
+}

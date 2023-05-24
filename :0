@@ -3,28 +3,36 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"time"
 )
 
-func main() {
-        rand.Seed(time.now)().UnixNano())
-	var num int
+func numeroAleatório() int {
 	random := rand.Intn(100) + 1
+	return random
+
+}
+
+func main() {
+	fmt.Println("Este é o jogo da adivinhação. Seja bem-vindo.")
+
+	var num int
+	random := numeroAleatório()
 	var tentativa int
-	var rep string
+	var repetir string
 
 	for num != random {
-		fmt.Println("Insira um número: ")
-		fmt.Scan(&num)
+		fmt.Println("Insira um número de 1 a 100: ")
+		fmt.Scanln(&num)
+
 		if num > random {
-			fmt.Println("O número é menor")
+			fmt.Printf("O número é menor que %d.\n", num)
 		} else if num < random {
-			fmt.Println("O número é maior")
+			fmt.Printf("O número é maior que %d.\n", num)
 		} else {
-			fmt.Println("Parabéns, você alcançou o número :) gostaria de tentar novamente? ")
-			fmt.Scan(&rep)
-			if rep = "s" {
-				continue
+			fmt.Println("Parabéns, você alcançou o número! :) Você gostaria de tentar novamente? (s/n) ")
+			fmt.Scan(&repetir)
+			if repetir == "s" {
+				random = numeroAleatório()
+
 			}
 		}
 		tentativa++

@@ -16,7 +16,8 @@ func main() {
 
 	var num int
 	random := numeroAleatório()
-	var tentativa int
+	var partidas int
+	tentativa := 1
 	var repetir string
 
 	for num != random {
@@ -25,17 +26,31 @@ func main() {
 
 		if num > random {
 			fmt.Printf("O número é menor que %d.\n", num)
+			tentativa++
 		} else if num < random {
 			fmt.Printf("O número é maior que %d.\n", num)
+			tentativa++
 		} else {
 			fmt.Println("Parabéns, você alcançou o número! :) Você gostaria de tentar novamente? (s/n) ")
 			fmt.Scan(&repetir)
+			partidas++
+
 			if repetir == "s" {
+				fmt.Println("Nova partida!")
+				tentativa = 1
 				random = numeroAleatório()
 
+			} else if repetir == "n" {
+				fmt.Println("Fim de Jogo.")
+
+				for i := 0; i < partidas; i++ {
+					fmt.Printf("Você utilizou %d tentativas na %d partida. ", tentativa, partidas)
+				}
+				break
+
 			}
+
 		}
-		tentativa++
 
 	}
 	fmt.Println(tentativa)

@@ -1,0 +1,52 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+)
+
+func main() {
+	fmt.Println("Este é o jogo da adivinhação. Seja bem-vindo.")
+	var num int
+	var repetir string
+	var partidas int
+	totalTentativas := []int{}
+
+	for {
+		random := rand.Intn(100) + 1
+		tentativa := 1
+		fmt.Println("Insira um número de 1 a 100: ")
+		for {
+			fmt.Scanln(&num)
+			tentativa++
+
+			if num == random {
+				fmt.Printf("Parabéns, você alcançou o número em %d tentativas.\n", tentativa)
+				break
+			} else if num < random {
+				fmt.Printf("O número é maior que %d.\n", num)
+			} else {
+				fmt.Printf("O número é menor que %d.\n", num)
+			}
+		}
+
+		fmt.Println("Você gostaria de tentar novamente? (s/n) ")
+		fmt.Scanln(&repetir)
+		partidas++
+		totalTentativas = append(totalTentativas, tentativa)
+
+		if repetir == "s" {
+			fmt.Println("Nova partida!")
+			tentativa = 1
+
+		} else if repetir == "n" {
+			fmt.Println("Fim de Jogo.")
+			for i := 0; i < partidas; i++ {
+				fmt.Printf("Você utilizou %d tentativas na partida %d.\n", totalTentativas[i], i+1)
+			}
+			break
+		}
+
+	}
+
+}

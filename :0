@@ -5,53 +5,50 @@ import (
 	"math/rand"
 )
 
-func numeroAleatório() int {
-	random := rand.Intn(100) + 1
-	return random
-
+func printTentativa(Tudo [][]int) {
+	for i, tentativa := range Tudo {
+		fmt.Printf("Jogada %d: %v\n", i+1, tentativa)
+	}
 }
+
 
 func main() {
 	fmt.Println("Este é o jogo da adivinhação. Seja bem-vindo.")
-
+  var Tudo [][]int
 	var num int
-	random := numeroAleatório()
-	var partidas int
-	tentativa := 1
 	var repetir string
 
-	for num != random {
+	for {
+    random := rand.Intn(100) + 1
+    var tentativa []int
+    for {
 		fmt.Println("Insira um número de 1 a 100: ")
 		fmt.Scanln(&num)
+    tentativa = append(tentativa, num)
 
-		if num > random {
-			fmt.Printf("O número é menor que %d.\n", num)
-			tentativa++
-		} else if num < random {
-			fmt.Printf("O número é maior que %d.\n", num)
-			tentativa++
-		} else {
-			fmt.Println("Parabéns, você alcançou o número! :) Você gostaria de tentar novamente? (s/n) ")
+		if num == random {
+				fmt.Printf("Parabéns, você alcançou o número em %d tentativas.\n", len(tentativa))
+				break
+			} else if num < random {
+				fmt.Printf("O número é maior que %d.\n", num)
+			} else {
+				fmt.Printf("O número é menor que %d.\n", num)
+			}
+    }
+
+    fmt.Println("Você gostaria de tentar novamente? (s/n) ")
 			fmt.Scan(&repetir)
-			partidas++
 
 			if repetir == "s" {
 				fmt.Println("Nova partida!")
-				tentativa = 1
-				random = numeroAleatório()
 
 			} else if repetir == "n" {
 				fmt.Println("Fim de Jogo.")
+        break
+        }
+    }
 
-				for i := 0; i < partidas; i++ {
-					fmt.Printf("Você utilizou %d tentativas na %d partida. ", tentativa, partidas)
-				}
-				break
+	fmt.Println("Total de tentativas:")
+  printTentativa(Tudo)
 
 			}
-
-		}
-
-	}
-	fmt.Println(tentativa)
-}

@@ -14,7 +14,7 @@ func main() {
 
 	for {
 		random := rand.Intn(100) + 1
-		tentativa := 1
+		tentativa := 0
 		fmt.Println("Insira um número de 1 a 100: ")
 		for {
 			fmt.Scanln(&num)
@@ -37,7 +37,7 @@ func main() {
 
 		if repetir == "s" {
 			fmt.Println("Nova partida!")
-			tentativa = 1
+			tentativa = 0
 
 		} else if repetir == "n" {
 			fmt.Println("Fim de Jogo.")
